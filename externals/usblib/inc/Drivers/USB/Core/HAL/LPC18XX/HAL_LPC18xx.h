@@ -50,6 +50,7 @@
 #elif defined(__CC_ARM)
 	#define __BSS(x)
 #endif
+#define __BSS(x)
 /* bit defines for DEVICEADDR register. */
 #define USBDEV_ADDR_AD  (1 << 24)
 #define USBDEV_ADDR(n)  (((n) & 0x7F) << 25)
