@@ -64,7 +64,6 @@
 
 #define __LPC43XX__
 #define __GNUC__ 4
-#define __CC_ARM
 
 #ifndef CPU
 #error CPU shall be defined
