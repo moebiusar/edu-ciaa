@@ -33,7 +33,7 @@
 
 #define  __INCLUDE_FROM_EVENTS_C
 #define  __INCLUDE_FROM_USB_DRIVER
-#include "Events.h"
+#include "../inc/Drivers/USB/Core/USBMode.h"
 
 void USB_Event_Stub(void)
 {

@@ -31,7 +31,7 @@
 
 #define  __INCLUDE_FROM_USB_DRIVER
 #define  __INCLUDE_FROM_USB_CONTROLLER_C
-#include "USBController.h"
+#include "../inc/Drivers/USB/Core/USBController.h"
 
 volatile uint8_t USB_CurrentMode[MAX_USB_CORE];
 volatile bool Mem_IsInitialized = false;

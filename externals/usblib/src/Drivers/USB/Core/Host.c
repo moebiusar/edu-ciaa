@@ -30,12 +30,12 @@
  */
 
 #define  __INCLUDE_FROM_USB_DRIVER
-#include "USBMode.h"
+#include "../inc/Drivers/USB/Core/USBMode.h"
 
 #if defined(USB_CAN_BE_HOST)
 
 #define  __INCLUDE_FROM_HOST_C
-#include "Host.h"
+#include "../inc/Drivers/USB/Core/Host.h"
 
 //static uint8_t CurrentHostID = 0;
 uint8_t USB_Host_ControlPipeSize[MAX_USB_CORE];

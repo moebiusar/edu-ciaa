@@ -30,11 +30,11 @@
  */
 
 #define  __INCLUDE_FROM_USB_DRIVER
-#include "USBMode.h"
+#include "../inc/Drivers/USB/Core/USBMode.h"
 
 #if defined(USB_CAN_BE_HOST)
 
-#include "Pipe.h"
+#include "../inc/Drivers/USB/Core/Pipe.h"
 
 uint8_t pipeselected[MAX_USB_CORE];
 USB_Pipe_Data_t PipeInfo[MAX_USB_CORE][PIPE_TOTAL_PIPES];

@@ -30,14 +30,14 @@
  */
 
 #define  __INCLUDE_FROM_USB_DRIVER
-#include "USBMode.h"
+#include "../inc/Drivers/USB/Core/USBMode.h"
 
 #ifdef USB_CAN_BE_HOST
 
-#include "../../../Common/Common.h"
-#include "USBTask.h"
-#include "HAL/HAL.h"
-#include "USBMemory.h"
+#include "../inc/Common/Common.h"
+#include "../inc/Drivers/USB/Core/USBTask.h"
+#include "../inc/Drivers/USB/Core/HAL/HAL.h"
+#include "../inc/Drivers/USB/Core/USBMemory.h"
 
 /************************************************************************/
 /* LOCAL SYMBOL DECLARATIION                                            */

@@ -30,11 +30,11 @@
  */
 
 #define  __INCLUDE_FROM_USB_DRIVER
-#include "USBMode.h"
+#include "../inc/Drivers/USB/Core/USBMode.h"
 
 #if defined(USB_CAN_BE_HOST)
 
-#include "PipeStream.h"
+#include "../inc/Drivers/USB/Core/PipeStream.h"
 
 uint8_t Pipe_Discard_Stream(const uint8_t corenum,
 							uint16_t Length,

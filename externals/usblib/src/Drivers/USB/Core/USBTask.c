@@ -33,7 +33,7 @@
 
 #define  __INCLUDE_FROM_USBTASK_C
 #define  __INCLUDE_FROM_USB_DRIVER
-#include "USBTask.h"
+#include "../inc/Drivers/USB/Core/USBTask.h"
 
 volatile bool        USB_IsInitialized;
 
