@@ -32,13 +32,13 @@
 
 
 #define  __INCLUDE_FROM_USB_DRIVER
-#include "../../Core/USBMode.h"
+#include "../inc/Drivers/USB/Core/USBMode.h"
 
 #if defined(USB_CAN_BE_HOST)
 
 #define  __INCLUDE_FROM_AUDIO_DRIVER
 #define  __INCLUDE_FROM_AUDIO_HOST_C
-#include "AudioClassHost.h"
+#include "../inc/Drivers/USB/Class/Host/AudioClassHost.h"
 
 uint8_t Audio_Host_ConfigurePipes(USB_ClassInfo_Audio_Host_t* const AudioInterfaceInfo,
                                   uint16_t ConfigDescriptorSize,

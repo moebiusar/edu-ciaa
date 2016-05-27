@@ -31,13 +31,13 @@
  */
 
 #define  __INCLUDE_FROM_USB_DRIVER
-#include "../../Core/USBMode.h"
+#include "../inc/Drivers/USB/Core/USBMode.h"
 
 #if defined(USB_CAN_BE_DEVICE)
 
 #define  __INCLUDE_FROM_RNDIS_DRIVER
 #define  __INCLUDE_FROM_RNDIS_DEVICE_C
-#include "RNDISClassDevice.h"
+#include "../inc/Drivers/USB/Class/Device/RNDISClassDevice.h"
 
 static uint32_t PROGMEM AdapterSupportedOIDList[]  =
 	{

@@ -32,13 +32,13 @@
 
 
 #define  __INCLUDE_FROM_USB_DRIVER
-#include "../../Core/USBMode.h"
+#include "../inc/Drivers/USB/Core/USBMode.h"
 
 #if defined(USB_CAN_BE_HOST)
 
 #define  __INCLUDE_FROM_SI_DRIVER
 #define  __INCLUDE_FROM_STILLIMAGE_HOST_C
-#include "StillImageClassHost.h"
+#include "../inc/Drivers/USB/Class/Host/StillImageClassHost.h"
 
 uint8_t SI_Host_ConfigurePipes(USB_ClassInfo_SI_Host_t* const SIInterfaceInfo,
                                uint16_t ConfigDescriptorSize,

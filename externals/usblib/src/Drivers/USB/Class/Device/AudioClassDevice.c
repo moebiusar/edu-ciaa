@@ -32,13 +32,13 @@
 
 
 #define  __INCLUDE_FROM_USB_DRIVER
-#include "../../Core/USBMode.h"
+#include "../inc/Drivers/USB/Core/USBMode.h"
 
 #if defined(USB_CAN_BE_DEVICE)
 
 #define  __INCLUDE_FROM_AUDIO_DRIVER
 #define  __INCLUDE_FROM_AUDIO_DEVICE_C
-#include "AudioClassDevice.h"
+#include "../inc/Drivers/USB/Class/Device/AudioClassDevice.h"
 
 void Audio_Device_ProcessControlRequest(USB_ClassInfo_Audio_Device_t* const AudioInterfaceInfo)
 {

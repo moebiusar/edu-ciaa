@@ -59,6 +59,21 @@
 /** Define USE_USB_ROM_STACK = 1 to use MCU's internal ROM stack, 0 if otherwise */
 #define USE_USB_ROM_STACK			0
 
+#define USB_CAN_BE_DEVICE
+
+#define __LPC43XX__
+#define __GNUC__ 4
+#define __CC_ARM
+
+#ifndef CPU
+#error CPU shall be defined
+#endif
+#if (lpc4337 == CPU)
+#include "chip.h"
+#elif (mk60fx512vlq15 == CPU)
+#else
+#endif
+
 #endif /* NXPUSBLIB_CONFIG_H_ */
 
 /**

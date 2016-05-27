@@ -32,13 +32,13 @@
 
 
 #define  __INCLUDE_FROM_USB_DRIVER
-#include "../../Core/USBMode.h"
+#include "../inc/Drivers/USB/Core/USBMode.h"
 
 #if defined(USB_CAN_BE_HOST)
 
 #define  __INCLUDE_FROM_HID_DRIVER
 #define  __INCLUDE_FROM_HID_HOST_C
-#include "HIDClassHost.h"
+#include "../inc/Drivers/USB/Class/Host/HIDClassHost.h"
 
 uint8_t HID_Host_ConfigurePipes(USB_ClassInfo_HID_Host_t* const HIDInterfaceInfo,
                                 uint16_t ConfigDescriptorSize,

@@ -32,13 +32,13 @@
 
 
 #define  __INCLUDE_FROM_USB_DRIVER
-#include "../../Core/USBMode.h"
+#include "../inc/Drivers/USB/Core/USBMode.h"
 
 #if defined(USB_CAN_BE_HOST)
 
 #define  __INCLUDE_FROM_RNDIS_DRIVER
 #define  __INCLUDE_FROM_RNDIS_HOST_C
-#include "RNDISClassHost.h"
+#include "../inc/Drivers/USB/Class/Host/RNDISClassHost.h"
 
 uint8_t RNDIS_Host_ConfigurePipes(USB_ClassInfo_RNDIS_Host_t* const RNDISInterfaceInfo,
                                   uint16_t ConfigDescriptorSize,

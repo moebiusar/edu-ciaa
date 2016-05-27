@@ -33,7 +33,7 @@
 
 #define  __INCLUDE_FROM_USB_DRIVER
 #define  __INCLUDE_FROM_HID_DRIVER
-#include "HIDParser.h"
+#include "../Drivers/USB/Class/Common/HIDParser.h"
 
 uint8_t USB_ProcessHIDReport(const uint8_t* ReportData,
                              uint16_t ReportSize,

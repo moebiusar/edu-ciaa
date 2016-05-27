@@ -32,13 +32,13 @@
 
 
 #define  __INCLUDE_FROM_USB_DRIVER
-#include "../../Core/USBMode.h"
+#include "../inc/Drivers/USB/Core/USBMode.h"
 
 #if defined(USB_CAN_BE_DEVICE)
 
 #define  __INCLUDE_FROM_MS_DRIVER
 #define  __INCLUDE_FROM_MASSSTORAGE_DEVICE_C
-#include "MassStorageClassDevice.h"
+#include "../inc/Drivers/USB/Class/Device/MassStorageClassDevice.h"
 
 void MS_Device_ProcessControlRequest(USB_ClassInfo_MS_Device_t* const MSInterfaceInfo)
 {

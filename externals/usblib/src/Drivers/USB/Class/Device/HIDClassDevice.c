@@ -32,13 +32,13 @@
 
 
 #define  __INCLUDE_FROM_USB_DRIVER
-#include "../../Core/USBMode.h"
+#include "../inc/Drivers/USB/Core/USBMode.h"
 
 #if defined(USB_CAN_BE_DEVICE)
 
 #define  __INCLUDE_FROM_HID_DRIVER
 #define  __INCLUDE_FROM_HID_DEVICE_C
-#include "HIDClassDevice.h"
+#include "../inc/Drivers/USB/Class/Device/HIDClassDevice.h"
 
 void HID_Device_ProcessControlRequest(USB_ClassInfo_HID_Device_t* const HIDInterfaceInfo)
 {

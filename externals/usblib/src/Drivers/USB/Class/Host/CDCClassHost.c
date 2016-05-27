@@ -32,13 +32,13 @@
 
 
 #define  __INCLUDE_FROM_USB_DRIVER
-#include "../../Core/USBMode.h"
+#include "../inc/Drivers/USB/Core/USBMode.h"
 
 #if defined(USB_CAN_BE_HOST)
 
 #define  __INCLUDE_FROM_CDC_DRIVER
 #define  __INCLUDE_FROM_CDC_HOST_C
-#include "CDCClassHost.h"
+#include "../inc/Drivers/USB/Class/Host/CDCClassHost.h"
 
 uint8_t CDC_Host_ConfigurePipes(USB_ClassInfo_CDC_Host_t* const CDCInterfaceInfo,
                                 uint16_t ConfigDescriptorSize,

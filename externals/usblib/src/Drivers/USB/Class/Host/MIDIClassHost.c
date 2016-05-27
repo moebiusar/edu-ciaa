@@ -31,13 +31,13 @@
  */
 
 #define  __INCLUDE_FROM_USB_DRIVER
-#include "../../Core/USBMode.h"
+#include "../inc/Drivers/USB/Core/USBMode.h"
 
 #if defined(USB_CAN_BE_HOST)
 
 #define  __INCLUDE_FROM_MIDI_DRIVER
 #define  __INCLUDE_FROM_MIDI_HOST_C
-#include "MIDIClassHost.h"
+#include "../inc/Drivers/USB/Class/Host/MIDIClassHost.h"
 
 uint8_t MIDI_Host_ConfigurePipes(USB_ClassInfo_MIDI_Host_t* const MIDIInterfaceInfo,
                                  uint16_t ConfigDescriptorSize,

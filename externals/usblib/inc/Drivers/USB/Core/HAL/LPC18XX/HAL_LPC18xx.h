@@ -38,6 +38,7 @@
 #define __HAL_LPC18XX_H__
 
 #include "chip.h"
+#include "../../usbhs_001.h"
 
 #define  __INCLUDE_FROM_USB_DRIVER
 #include "../../USBMode.h"

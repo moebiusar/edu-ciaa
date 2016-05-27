@@ -32,13 +32,13 @@
 
 
 #define  __INCLUDE_FROM_USB_DRIVER
-#include "../../Core/USBMode.h"
+#include "../inc/Drivers/USB/Core/USBMode.h"
 
 #if defined(USB_CAN_BE_HOST)
 
 #define  __INCLUDE_FROM_PRINTER_DRIVER
 #define  __INCLUDE_FROM_PRINTER_HOST_C
-#include "PrinterClassHost.h"
+#include "../inc/Drivers/USB/Class/Host/PrinterClassHost.h"
 
 uint8_t PRNT_Host_ConfigurePipes(USB_ClassInfo_PRNT_Host_t* const PRNTInterfaceInfo,
                                  uint16_t ConfigDescriptorSize,

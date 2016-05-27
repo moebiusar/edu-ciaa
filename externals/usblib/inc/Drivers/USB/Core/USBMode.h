@@ -59,7 +59,7 @@
 			#error Do not include this file directly. Include /software/LPCUSBLib/Drivers/USB/USB.h instead.
 		#endif
 
-		#include "../../../LPCUSBlibConfig.h"
+		#include "../LPCUSBlibConfig.h"
 
 	/* Public Interface - May be used in end-application: */
 	#if defined(__DOXYGEN__)

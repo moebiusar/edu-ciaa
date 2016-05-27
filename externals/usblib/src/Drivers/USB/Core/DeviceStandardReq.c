@@ -32,12 +32,12 @@
 
 
 #define  __INCLUDE_FROM_USB_DRIVER
-#include "USBMode.h"
+#include "../inc/Drivers/USB/Core/USBMode.h"
 
 #if defined(USB_CAN_BE_DEVICE)
 
 #define  __INCLUDE_FROM_DEVICESTDREQ_C
-#include "DeviceStandardReq.h"
+#include "../inc/Drivers/USB/Core/DeviceStandardReq.h"
 
 uint8_t USB_Device_ConfigurationNumber;
 
