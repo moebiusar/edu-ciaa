@@ -59,6 +59,7 @@
 /** Define USE_USB_ROM_STACK = 1 to use MCU's internal ROM stack, 0 if otherwise */
 #define USE_USB_ROM_STACK			0
 
+/* Defines agregados para compilar la librería */
 #define USB_CAN_BE_DEVICE
 
 #define __LPC43XX__
@@ -73,6 +74,7 @@
 #elif (mk60fx512vlq15 == CPU)
 #else
 #endif
+/* Fin de los defines */
 
 #endif /* NXPUSBLIB_CONFIG_H_ */
 
