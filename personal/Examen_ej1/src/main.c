@@ -222,9 +222,11 @@ int main(void)
    /* Config de la función delay para el Debounce */
    delayConfig( &delayDebounce, T_DEBOUNCE);
 
+   /* Variable para el toggle del Led */
    uint8_t estado_led = OFF;
-   uint8_t i=0;
-
+   /* Variable contador */
+   uint8_t contador = 0;
+   /* Array para envío del valor de contador */
    static uint8_t uartBuff[2];
 
    /* Inicialización de MEF */
@@ -240,34 +242,46 @@ int main(void)
 	   {
 		   /* Alamcenamos el nuevo estado del botón */
 		   buttonPressedAnterior = buttonPressed;
-		   /* Efectuamos el cambio al liberar el botón */
 		   if (buttonPressed)
+			   /* Habilitamos el toggle del Led al presionar el botón */
 			   cambioLed = 1;
 		   else
+			   /* Incrementamos el contador al liberar el botón */
 			   cambioContador = 1;
 	   }
-
+	   /* Mediante un flag, generamos el cambio del Led */
 	   if( cambioLed ){
+		   /* Toggle del estado del Led */
 		   estado_led = !estado_led;
 		   digitalWrite( LEDB, estado_led );
+		   /* Deshabilitamos el cambio del Led hasta que el TEC sea presionado nuevamente */
 		   cambioLed = 0;
 	   }
+	   /* Mediante un flag, generamos el cambio del contador */
 	   if( cambioContador ){
-		   i++;
-		   if ( 8 == i )
-			   i = 0;
+		   /* Incrementamos el contador */
+		   contador++;
+		   /* Reseteamos a cero si excede 7 */
+		   /* También se podría haber aplicado una máscara i &= 7 y no utilizar una comparación*/
+		   /* Debería buscarse cuál sería la forma más eficiente si el tiempo es crítico */
+		   if ( 8 == contador )
+			   contador = 0;
+
+		   /* Se comienza el envío del contador por UART */
 		   uartWriteString(UART_USB, (uint8_t*)"Valor del contador: ");
 		   /* Conversión de muestra entera a ascii con base decimal */
-		   itoa( i, uartBuff, 10 ); /* 10 significa decimal */
+		   itoa( contador, uartBuff, 10 ); /* 10 significa decimal */
 
 		   /* Enviar muestra y \n */
 		   uartBuff[1] = 0;    /* NULL */
 		   uartWriteString(UART_USB, uartBuff);
 		   uartWriteString(UART_USB, (uint8_t*) "\r\n");
-		   digitalWrite( LED1, i & 4 );
-		   digitalWrite( LED2, i & 2 );
-		   digitalWrite( LED3, i & 1 );
+		   /* Se aplica una máscara al contador para encender los Leds segun su peso */
+		   digitalWrite( LED1, contador & 4 );
+		   digitalWrite( LED2, contador & 2 );
+		   digitalWrite( LED3, contador & 1 );
 
+		   /* Deshabilitamos el cambio del contador hasta que el TEC sea liberado nuevamente */
 		   cambioContador = 0;
 	   }
    }

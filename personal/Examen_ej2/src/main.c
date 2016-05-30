@@ -70,9 +70,11 @@
 typedef enum{MENU, ESPERA_ENTRADA, ESPERA_1S, ESPERA_2S, E_LEDR, E_LEDG, E_LEDB,
 			E_LED1, E_LED2, E_LED3, E_TEC1, E_TEC2, E_TEC3, E_TEC4, ALLOFF} estadoMEF;
 
-#define T_MUESTRA1 1000
-#define T_MUESTRA2 2000
+/* Definición de períodos de espera */
+#define T_ESPERA1 1000
+#define T_ESPERA2 2000
 
+/* Definición de tipo para manejo de botones */
 typedef struct{
 	bool_t   change;
 	bool_t   pressed;
@@ -102,15 +104,14 @@ bool_t buttonPressedAnterior = FALSE;
 bool_t cambioLed;
 bool_t cambioContador;
 
+/* Variable para recepción por UART de opción seleccionada */
 uint8_t entrada;
 
+/* Declaración de variables de botones */
 button tec1;
 button tec2;
 button tec3;
 button tec4;
-
-delay_t delayMuestra1;
-delay_t delayMuestra2;
 
 /*==================[internal functions definition]==========================*/
 
@@ -162,8 +163,10 @@ void debounce (button *boton){
 }
 
 /*==================[external functions definition]==========================*/
-
-void ImprimirMenu (void){
+/**
+ * La función imprimirMenu muestra el menú de selección.
+ */
+void imprimirMenu (void){
 
 	uartWriteString(UART_USB, (uint8_t*)"==============================================\r\n");
 	uartWriteString(UART_USB, (uint8_t*)"=             Menú de selección              =\r\n");
@@ -182,29 +185,35 @@ void ImprimirMenu (void){
 }
 
 /**
- *
+ *  Fución de inicialización de Máquina de Estados Finitos
  */
-
    void MEF_Init ( void ){
 	   estadoActual = MENU;
    }
 
 /**
- *
+ *  Fución de actualización de Máquina de Estados Finitos
  */
    void MEF_Update ( void ){
 
 	   switch (estadoActual) {
 	   case MENU:
-		   ImprimirMenu();
+		   /* Se imprime el menú de opciones */
+		   imprimirMenu();
+		   /* Se cambia de estado */
 		   estadoActual = ESPERA_ENTRADA;
 			break;
+
 	   case ESPERA_ENTRADA:
+		   /* En este estado se espera que el usuario indique la acción */
+		   /* Se verifica si las TEC son presionadas */
 		   debounce(&tec1);
 		   debounce(&tec2);
 		   debounce(&tec3);
 		   debounce(&tec4);
+		   /* Se lee el buffer de la UART buscando la opción seleccionada */
 		   entrada = uartReadByte(UART_USB);
+		   /* Se cambia de estado segun la opción seleccionada */
 		   switch (entrada) {
 		   case 'r':
 		   case 'R':
@@ -246,63 +255,85 @@ void ImprimirMenu (void){
 			   if(tec4.pressed)
 				   estadoActual = E_TEC4;
 		   break;
+
 	   case E_LEDB:
 		   uartWriteString(UART_USB, (uint8_t*)"Led B encendido.\r\n");
 		   uartWriteString(UART_USB, (uint8_t*)"\r\n");
 		   digitalWrite( LEDB, ON );
+		   /* Se pasa al estado de espera de 2seg. */
 		   estadoActual = ESPERA_2S;
 		   break;
+
 	   case E_LEDG:
 		   uartWriteString(UART_USB, (uint8_t*)"Led G encendido.\r\n");
 		   uartWriteString(UART_USB, (uint8_t*)"\r\n");
 		   digitalWrite( LEDG, ON );
+		   /* Se pasa al estado de espera de 2seg. */
 		   estadoActual = ESPERA_2S;
 		   break;
+
 	   case E_LEDR:
 		   uartWriteString(UART_USB, (uint8_t*)"Led R encendido.\r\n");
 		   uartWriteString(UART_USB, (uint8_t*)"\r\n");
 		   digitalWrite( LEDR, ON );
+		   /* Se pasa al estado de espera de 2seg. */
 		   estadoActual = ESPERA_2S;
 		   break;
+
 	   case E_LED1:
 		   uartWriteString(UART_USB, (uint8_t*)"Led 1 encendido.\r\n");
 		   uartWriteString(UART_USB, (uint8_t*)"\r\n");
 		   digitalWrite( LED1, ON );
+		   /* Se pasa al estado de espera de 2seg. */
 		   estadoActual = ESPERA_2S;
+
 		   break;
 	   case E_LED2:
 		   uartWriteString(UART_USB, (uint8_t*)"Led 2 encendido.\r\n");
 		   uartWriteString(UART_USB, (uint8_t*)"\r\n");
 		   digitalWrite( LED2, ON );
+		   /* Se pasa al estado de espera de 2seg. */
 		   estadoActual = ESPERA_2S;
 		   break;
+
 	   case E_LED3:
 		   uartWriteString(UART_USB, (uint8_t*)"Led 3 encendido.\r\n");
 		   uartWriteString(UART_USB, (uint8_t*)"\r\n");
 		   digitalWrite( LED3, ON );
+		   /* Se pasa al estado de espera de 2seg. */
 		   estadoActual = ESPERA_2S;
 		   break;
+
 	   case E_TEC1:
 		   uartWriteString(UART_USB, (uint8_t*)"Tecla 1 presionada.\r\n");
 		   uartWriteString(UART_USB, (uint8_t*)"\r\n");
+		   /* Se pasa al estado de espera de 1seg. */
 		   estadoActual = ESPERA_1S;
 		   break;
+
 	   case E_TEC2:
 		   uartWriteString(UART_USB, (uint8_t*) "Tecla 2 presionada.\r\n");
 		   uartWriteString(UART_USB, (uint8_t*)"\r\n");
+		   /* Se pasa al estado de espera de 1seg. */
 		   estadoActual = ESPERA_1S;
 		   break;
+
 	   case E_TEC3:
 		   uartWriteString(UART_USB, (uint8_t*)"Tecla 3 presionada.\r\n");
 		   uartWriteString(UART_USB, (uint8_t*)"\r\n");
+		   /* Se pasa al estado de espera de 1seg. */
 		   estadoActual = ESPERA_1S;
 		   break;
+
 	   case E_TEC4:
 		   uartWriteString(UART_USB, (uint8_t*)"Tecla 4 presionada.\r\n");
 		   uartWriteString(UART_USB, (uint8_t*)"\r\n");
+		   /* Se pasa al estado de espera de 1seg. */
 		   estadoActual = ESPERA_1S;
 		   break;
+
 	   case ALLOFF:
+		   /* Se apagan todos los Leds. */
 		   digitalWrite( LEDR, OFF );
 		   digitalWrite( LEDG, OFF );
 		   digitalWrite( LEDB, OFF );
@@ -311,19 +342,25 @@ void ImprimirMenu (void){
 		   digitalWrite( LED3, OFF );
 		   uartWriteString(UART_USB, (uint8_t*)"Todos los Leds apagados.\r\n");
 		   uartWriteString(UART_USB, (uint8_t*)"\r\n");
+		   /* Se pasa al estado de espera de 2seg. */
 		   estadoActual = ESPERA_2S;
 		   break;
+
 	   case ESPERA_1S:
-		   delay(T_MUESTRA1);
-		   //if ( delayRead(&delayMuestra1) )
+		   /* Se utiliza delay bloqueante por simplicidad ya que el usuario no puede
+		    * seleccionar otra opción hasta que se imprima otra vez el menú */
+		   delay(T_ESPERA1);
+		   /* Se vuelve al estado inicial */
 		   estadoActual = MENU;
 		   break;
+
 	   case ESPERA_2S:
-		   delay(T_MUESTRA2);
-		   //if ( delayRead(&delayMuestra2) )
+		   delay(T_ESPERA2);
 		   estadoActual = MENU;
 		   break;
+
 	   default:
+		   /* Captura de algún error o imprevisto. */
 		   MEF_Init();
 		   break;
 	   }
@@ -371,9 +408,9 @@ int main(void)
    digitalConfig( LED3, OUTPUT );
 
    /* Inicialización de variables */
-   tec1.change = FALSE;	// No hay cambio
+   tec1.change = FALSE;		// No hay cambio
    tec1.pressed = FALSE;	// Normal abierto
-   tec1.tec = TEC1;		// Qué botón de Hardware
+   tec1.tec = TEC1;			// Qué botón de Hardware
    tec1.count = 2;			// Se espera cambio Abierto -> Cerrado
 
    tec2.change = FALSE;
@@ -391,15 +428,12 @@ int main(void)
    tec4.tec = TEC4;
    tec4.count = 2;
 
-   delayConfig( &delayMuestra1, T_MUESTRA1 );
-   delayConfig( &delayMuestra2, T_MUESTRA2 );
-
    /* Inicialización de MEF */
    MEF_Init();
 
    /* ------------- REPETIR POR SIEMPRE ------------- */
    while(1) {
-
+	   /* Actualización de la Máquina de Estados Finitos */
 	   MEF_Update();
 
    }
