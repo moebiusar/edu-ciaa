@@ -5,12 +5,12 @@
  *
  *    or
  *
- * Copyright 2014, Your Name <youremail@domain.com>
+ * Copyright 2014, Carlos I. Mancón <cimancon@gmail.com>
  * All rights reserved.
  *
  *    or
  *
- * Copyright 2014, ACSE & CADIEEL & Your Name <youremail@domain.com
+ * Copyright 2014, ACSE & CADIEEL & Carlos I. Mancón <cimancon@gmail.com>
  *    ACSE   : http://www.sase.com.ar/asociacion-civil-sistemas-embebidos/ciaa/
  *    CADIEEL: http://www.cadieel.org.ar
  * All rights reserved.
@@ -45,15 +45,15 @@
  *
  */
 
-/** \brief Short description of this file
+/** \brief This file implements the Midi main functionality
  **
- ** Long description of this file
+ ** This file implements the main functionality of the Midi
  **
  **/
 
 /** \addtogroup CIAA_Firmware CIAA Firmware
  ** @{ */
-/** \addtogroup Template Template to start a new module
+/** \addtogroup Midi CIAA Midi
  ** @{ */
 
 /*==================[inclusions]=============================================*/
@@ -72,21 +72,7 @@
 /*==================[internal functions definition]==========================*/
 
 /*==================[external functions definition]==========================*/
-extern int16_t Template_Sum16bits(int16_t const a, int16_t const b)
-{
-    int16_t ret;
-    int32_t tmp = (int32_t)a + (int32_t)b;
 
-    if (tmp > (int32_t)INT16_MAX) {
-        ret = INT16_MAX;
-    } else if (tmp < (int32_t)INT16_MIN) {
-        ret = INT16_MIN;
-    } else {
-        ret = (int16_t)tmp;
-    }
-
-    return ret;
-}
 
 /** @} doxygen end group definition */
 /** @} doxygen end group definition */

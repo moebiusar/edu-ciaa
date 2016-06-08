@@ -7,12 +7,12 @@
 #
 #    or
 #
-# Copyright 2014, Your Name <youremail@domain.com>
+# Copyright 2014, Carlos I. Mancón <cimancon@gmail.com>
 # All rights reserved.
 #
 #    or
 #
-# Copyright 2014, ACSE & CADIEEL & Your Name <youremail@domain.com
+# Copyright 2014, ACSE & CADIEEL & Carlos I. Mancón <cimancon@gmail.com>
 #    ACSE   : http://www.sase.com.ar/asociacion-civil-sistemas-embebidos/ciaa/
 #    CADIEEL: http://www.cadieel.org.ar
 # All rights reserved.
@@ -47,14 +47,14 @@
 #
 ###############################################################################
 # library
-LIBS 				     += template
+LIBS 				     += midi
 # version
-template_VERSION     = 0.1.0
+midi_VERSION     = 0.1.0
 # library path
-template_PATH 		   = $(ROOT_DIR)$(DS)modules$(DS)template
+midi_PATH 		   = $(ROOT_DIR)$(DS)modules$(DS)midi
 # library source path
-template_SRC_PATH 	= $(template_PATH)$(DS)src
+midi_SRC_PATH 	= $(midi_PATH)$(DS)src
 # library include path
-template_INC_PATH 	= $(template_PATH)$(DS)inc
+midi_INC_PATH 	= $(midi_PATH)$(DS)inc
 # library source files
-template_SRC_FILES 	= $(wildcard $(template_SRC_PATH)$(DS)*.c)
+midi_SRC_FILES 	= $(wildcard $(midi_SRC_PATH)$(DS)*.c)

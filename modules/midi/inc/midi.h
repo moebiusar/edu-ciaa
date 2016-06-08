@@ -5,12 +5,12 @@
  *
  *    or
  *
- * Copyright 2014, Your Name <youremail@domain.com>
+ * Copyright 2014, Carlos I. Mancón <cimancon@gmail.com>
  * All rights reserved.
  *
  *    or
  *
- * Copyright 2014, ACSE & CADIEEL & Your Name <youremail@domain.com
+ * Copyright 2014, ACSE & CADIEEL & Carlos I. Mancón <cimancon@gmail.com>
  *    ACSE   : http://www.sase.com.ar/asociacion-civil-sistemas-embebidos/ciaa/
  *    CADIEEL: http://www.cadieel.org.ar
  * All rights reserved.
@@ -45,17 +45,18 @@
  *
  */
 
-#ifndef TEMPLATE_FILE_H
-#define TEMPLATE_FILE_H
-/** \brief Short description of this file
+#ifndef MIDI_FILE_H
+#define MIDI_FILE_H
+/** \brief Midi Header File
  **
- ** Long description of this file
+ ** This files shall be included by modules using the interfaces provided by
+ ** the Midi
  **
  **/
 
 /** \addtogroup CIAA_Firmware CIAA Firmware
  ** @{ */
-/** \addtogroup Template Template to start a new module
+/** \addtogroup Midi CIAA Midi
  ** @{ */
 
 /*==================[inclusions]=============================================*/
@@ -101,5 +102,5 @@ extern int16_t Template_Sum16bits(int16_t const a, int16_t const b);
 /** @} doxygen end group definition */
 /** @} doxygen end group definition */
 /*==================[end of file]============================================*/
-#endif /* #ifndef TEMPLATE_FILE_H */
+#endif /* #ifndef MIDI_FILE_H */
 
