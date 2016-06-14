@@ -36,7 +36,7 @@
 
 /** \addtogroup CIAA_Firmware CIAA Firmware
  ** @{ */
-/** \addtogroup Template Template to start a new module
+/** \addtogroup Midi CIAA Midi
  ** @{ */
 /** \addtogroup UnitTests Unit Tests
  ** @{ */
@@ -72,34 +72,6 @@ void setUp(void) {
  **
  **/
 void tearDown(void) {
-}
-
-void test_Template_Sum_01(void)
-{
-   int16_t sum;
-
-   sum = Template_Sum16bits(45,90);
-
-   TEST_ASSERT_EQUAL_INT16(135, sum);
-}
-
-
-void test_Template_Sum_02(void)
-{
-   int16_t sum;
-
-   sum = Template_Sum16bits(9500,32090);
-
-   TEST_ASSERT_EQUAL_INT16(32767, sum);
-}
-
-void test_Template_Sum_03(void)
-{
-   int16_t sum;
-
-   sum = Template_Sum16bits(-4500, -31000);
-
-   TEST_ASSERT_EQUAL_INT16(-32768, sum);
 }
 
 /** @} doxygen end group definition */

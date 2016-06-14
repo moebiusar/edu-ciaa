@@ -33,9 +33,9 @@
 ###############################################################################
 # unit test
 # unit tests include files
-template_TST_INC_PATH = $(dtemplate_PATH)$(DS)test$(DS)utest$(DS)inc
+midi_TST_INC_PATH = $(midi_PATH)$(DS)test$(DS)utest$(DS)inc
 
 # unit tests dependencies
-template_TST_MOD      =
+midi_TST_MOD      =
 # extra mocks
-template_TST_MOCKS    =
+midi_TST_MOCKS    =
