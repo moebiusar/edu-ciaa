@@ -45,9 +45,12 @@
  *
  */
 
-/** \brief This file implements the Midi main functionality
+#ifndef MIDI_DEFINITIONS_H
+#define MIDI_DEFINITIONS_H
+/** \brief Midi Header File
  **
- ** This file implements the main functionality of the Midi
+ ** This files shall be included by modules using the interfaces provided by
+ ** the Midi
  **
  **/
 
@@ -57,85 +60,68 @@
  ** @{ */
 
 /*==================[inclusions]=============================================*/
-#include "midi.h"
 
-/*==================[macros and definitions]=================================*/
+/*==================[cplusplus]==============================================*/
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-/*==================[internal data declaration]==============================*/
+/*==================[macros]=================================================*/
 
-/*==================[internal functions declaration]=========================*/
+/*==================[typedef]================================================*/
+typedef unsigned char uint8_t;
 
-/*==================[internal data definition]===============================*/
+typedef struct{
+	uint8_t type;
+	uint8_t channel;
+	uint8_t msg0;
+	uint8_t msg1;
+	uint8_t msg2;
+} midi_Packet;
+/*==================[external data declaration]==============================*/
 
-/*==================[external data definition]===============================*/
+enum MIDI_channel{
+		CHN1,	CHN2,	CHN3,	CHN4,
+		CHN5,	CHN6,	CHN7,	CHN8,
+		CHN9,	CHN10,	CHN11,	CHN12,
+		CHN13,	CHN14,	CHN15,	CHN16	};
 
-/*==================[internal functions definition]==========================*/
+enum MIDI_voice_message{
+		NOTE_OFF = 0x80,
+		NOTE_ON = 0x90,
+		POLY_KEY_PRESSURE = 0xA0,
+		CONTROL_CHANGE = 0xB0,
+		PROGRAM_CHANGE = 0xC0,
+		CHANNEL_PRESSURE = 0xD0,
+		PITCH_BEND = 0xE0		};
 
-/*==================[external functions definition]==========================*/
-//int32_t Midi_Init_Uart(MidiUart_t uart){}
+enum MIDI_sys_common_message{
+		TIME_CODE_QTR_FRAME = 0xF1,
+		SONG_POSITION_POINTER = 0xF2,
+		SONG_SELECT = 0xF3,
+		TUNE_REQUEST = 0xF6,
+		EOX = 0xF7					//End Of Exclusive
+};
 
-uint8_t Midi_Es_Status(uint8_t byte){
+enum MIDI_sys_real_time_message{
+		TIMMING_CLOCK = 0xF8,
+		START = 0xFA,
+		CONTINUE = 0xFB,
+		STOP = 0xFC,
+		ACTIVE_SENSING = 0xFE,
+		SYSTEM_RESET = 0xFF
+};
 
-	return (byte & 128) >> 7;
+#define SYSTEM_EXCLUSIVE 0xF0
+
+/*==================[external functions declaration]=========================*/
+
+/*==================[cplusplus]==============================================*/
+#ifdef __cplusplus
 }
-uint8_t Midi_Es_Dato(uint8_t byte){
-
-	return !Midi_Es_Status(byte);
-}
-
-uint8_t Midi_Es_Mensaje_De_Canal (uint8_t byte){
-
-	uint8_t ret;
-	if ((0x80 <= byte) && (0xF0 > byte)){
-		ret = 1;
-	}
-	else
-	{
-		ret = 0;
-	}
-	return ret;
-}
-
-uint8_t Midi_Es_Mensaje_De_Sistema (uint8_t byte){
-
-	uint8_t ret;
-	if ((0xF0 <= byte) && (0xFF >= byte)){
-		ret = 1;
-	}
-	else
-	{
-		ret = 0;
-	}
-	return ret;
-}
-
-void Midi_Init ( midiPortMode_t mode ){
-	switch ( mode ){
-	case MODE_USB:
-		break;
-	case MODE_UART_USB:
-		Midi_UartConfig( UART_USB );
-		//Midi_UsbConfig();
-		break;
-	default:
-	case MODE_UART:
-		Midi_UartConfig( UART_USB );
-		break;
-	}
-}
-
-void Midi_Send_Event (midiPort_t port, midi_Packet *packetPtr)
-{
-	switch(port){
-	case USB_PORT:
-		break;
-	case UART_PORT:
-	default:
-		Midi_Uart_Send_Event(packetPtr);
-		break;
-	}
-
-}
+#endif
 /** @} doxygen end group definition */
 /** @} doxygen end group definition */
 /*==================[end of file]============================================*/
+#endif /* #ifndef MIDI_DEFINITIONS_H */
+

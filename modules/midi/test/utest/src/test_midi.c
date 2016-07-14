@@ -43,7 +43,11 @@
 
 /*==================[inclusions]=============================================*/
 #include "unity.h"
+#include "stdint.h"
 #include "ciaaPOSIX_stdint.h"
+#include "midi.h"
+#include "midi_uart.h"
+//#include "../../../../../externals/drivers/cortexM4/lpc43xx/inc/ring_buffer.h"
 
 /*==================[macros and definitions]=================================*/
 
@@ -66,6 +70,88 @@
 void setUp(void) {
 }
 
+void test_DiscrimaStatus (void){
+	uint8_t resultado;
+
+	resultado = Midi_Es_Status(0x91);
+	TEST_ASSERT_EQUAL_UINT8(1, resultado);
+	resultado = Midi_Es_Status(64);
+	TEST_ASSERT_EQUAL_UINT8(0, resultado);
+}
+void test_DiscrimaDato (void){
+	uint8_t resultado;
+
+	resultado = Midi_Es_Dato(133);
+	TEST_ASSERT_EQUAL_UINT8(0, resultado);
+	resultado = Midi_Es_Dato(64);
+	TEST_ASSERT_EQUAL_UINT8(1, resultado);
+}
+
+void test_EsMensajeDeCanal (void){
+
+	uint8_t resultado;
+
+	resultado = Midi_Es_Mensaje_De_Canal (0x7F);
+	TEST_ASSERT_EQUAL_UINT8(0, resultado);
+	resultado = Midi_Es_Mensaje_De_Canal (0x80);
+	TEST_ASSERT_EQUAL_UINT8(1, resultado);
+	resultado = Midi_Es_Mensaje_De_Canal (0xEF);
+	TEST_ASSERT_EQUAL_UINT8(1, resultado);
+	resultado = Midi_Es_Mensaje_De_Canal (0xF0);
+	TEST_ASSERT_EQUAL_UINT8(0, resultado);
+}
+
+void test_EsMensajeDeSistema (void){
+
+	uint8_t resultado;
+
+	resultado = Midi_Es_Mensaje_De_Sistema (0xEF);
+	TEST_ASSERT_EQUAL_UINT8(0, resultado);
+	resultado = Midi_Es_Mensaje_De_Sistema (0xF0);
+	TEST_ASSERT_EQUAL_UINT8(1, resultado);
+	resultado = Midi_Es_Mensaje_De_Sistema (0xFF);
+	TEST_ASSERT_EQUAL_UINT8(1, resultado);
+}
+void test_Inicializar_Midi_Solo_Uart (void){
+	midiPortMode_t modo;
+
+	modo = MODE_UART;
+	Midi_UartConfig_CMockExpect(UART_USB);
+	Midi_Init(modo);
+
+}
+void test_Inicializar_Midi_Solo_Usb (void){
+	/*midiPortMode_t modo;
+
+	modo = MODE_USB;
+	Midi_UartConfig_CMockExpect(UART_USB);
+	Midi_Init(modo);
+*/
+	TEST_IGNORE_MESSAGE("Init USB no testeado");
+}
+void test_Inicializar_Midi_Uart_Usb (void){
+	midiPortMode_t modo;
+
+	modo = MODE_UART_USB;
+	Midi_UartConfig_CMockExpect(UART_USB);
+	Midi_Init(modo);
+}
+
+void test_Enviar_Evento (void){
+
+	midi_Packet paquete;
+	uint8_t string =  "U@U";
+	paquete.channel = 0x05;
+	paquete.type = 0x80;
+	paquete.msg0 = 0x85;
+	paquete.msg1 = 64;
+	paquete.msg2 = 64;
+	Midi_Uart_Send_Event_CMockExpect(NULL);
+	//Midi_Uart_Send_Event_CMockIgnore();
+	///uartWriteString_CMockExpect(string,3);
+	Midi_Send_Event (UART_PORT, &paquete);
+
+}
 /** \brief tear Down function
  **
  ** This function is called after each test case is executed

@@ -60,7 +60,8 @@
  ** @{ */
 
 /*==================[inclusions]=============================================*/
-
+#include "midi_definitions.h"
+#include "midi_uart.h"
 /*==================[cplusplus]==============================================*/
 #ifdef __cplusplus
 extern "C" {
@@ -70,12 +71,25 @@ extern "C" {
 
 
 /*==================[typedef]================================================*/
+typedef unsigned char uint8_t;
+//typedef unsigned int uint32_t;
 
+typedef enum{
+	MODE_UART, MODE_USB, MODE_UART_USB
+} midiPortMode_t;
+
+typedef enum{
+   UART_PORT, USB_PORT
+} midiPort_t;
 
 /*==================[external data declaration]==============================*/
 
 /*==================[external functions declaration]=========================*/
+void Midi_Init (midiPortMode_t);
 
+uint8_t Midi_Es_Status(uint8_t);
+
+uint8_t Midi_Es_Mensaje_De_Canal(uint8_t);
 
 /*==================[cplusplus]==============================================*/
 #ifdef __cplusplus

@@ -1,19 +1,4 @@
-/* Copyright 2014, ACSE & CADIEEL
- *    ACSE   : http://www.sase.com.ar/asociacion-civil-sistemas-embebidos/ciaa/
- *    CADIEEL: http://www.cadieel.org.ar
- * All rights reserved.
- *
- *    or
- *
- * Copyright 2014, Carlos I. Mancón <cimancon@gmail.com>
- * All rights reserved.
- *
- *    or
- *
- * Copyright 2014, ACSE & CADIEEL & Carlos I. Mancón <cimancon@gmail.com>
- *    ACSE   : http://www.sase.com.ar/asociacion-civil-sistemas-embebidos/ciaa/
- *    CADIEEL: http://www.cadieel.org.ar
- * All rights reserved.
+/* Copyright 2015, Mariano Cerdeiro
  *
  * This file is part of CIAA Firmware.
  *
@@ -45,9 +30,7 @@
  *
  */
 
-/** \brief This file implements the Midi main functionality
- **
- ** This file implements the main functionality of the Midi
+/** \brief This file implements the test of the Devices
  **
  **/
 
@@ -55,9 +38,16 @@
  ** @{ */
 /** \addtogroup Midi CIAA Midi
  ** @{ */
+/** \addtogroup UnitTests Unit Tests
+ ** @{ */
 
 /*==================[inclusions]=============================================*/
+#include "unity.h"
+#include "stdint.h"
+#include "ciaaPOSIX_stdint.h"
 #include "midi.h"
+#include "midi_uart.h"
+//#include "../../../../../externals/drivers/cortexM4/lpc43xx/inc/ring_buffer.h"
 
 /*==================[macros and definitions]=================================*/
 
@@ -72,70 +62,61 @@
 /*==================[internal functions definition]==========================*/
 
 /*==================[external functions definition]==========================*/
-//int32_t Midi_Init_Uart(MidiUart_t uart){}
-
-uint8_t Midi_Es_Status(uint8_t byte){
-
-	return (byte & 128) >> 7;
-}
-uint8_t Midi_Es_Dato(uint8_t byte){
-
-	return !Midi_Es_Status(byte);
+/** \brief set Up function
+ **
+ ** This function is called before each test case is executed
+ **
+ **/
+void setUp(void) {
 }
 
-uint8_t Midi_Es_Mensaje_De_Canal (uint8_t byte){
+void test_Inicializar_Midi_Solo_Uart (void){
+	midiPortMode_t modo;
 
-	uint8_t ret;
-	if ((0x80 <= byte) && (0xF0 > byte)){
-		ret = 1;
-	}
-	else
-	{
-		ret = 0;
-	}
-	return ret;
-}
-
-uint8_t Midi_Es_Mensaje_De_Sistema (uint8_t byte){
-
-	uint8_t ret;
-	if ((0xF0 <= byte) && (0xFF >= byte)){
-		ret = 1;
-	}
-	else
-	{
-		ret = 0;
-	}
-	return ret;
-}
-
-void Midi_Init ( midiPortMode_t mode ){
-	switch ( mode ){
-	case MODE_USB:
-		break;
-	case MODE_UART_USB:
-		Midi_UartConfig( UART_USB );
-		//Midi_UsbConfig();
-		break;
-	default:
-	case MODE_UART:
-		Midi_UartConfig( UART_USB );
-		break;
-	}
-}
-
-void Midi_Send_Event (midiPort_t port, midi_Packet *packetPtr)
-{
-	switch(port){
-	case USB_PORT:
-		break;
-	case UART_PORT:
-	default:
-		Midi_Uart_Send_Event(packetPtr);
-		break;
-	}
+	modo = MODE_UART;
+	Midi_UartConfig_CMockExpect(UART_USB);
+	Midi_Init(modo);
 
 }
+void test_Inicializar_Midi_Solo_Usb (void){
+	/*midiPortMode_t modo;
+
+	modo = MODE_USB;
+	Midi_UartConfig_CMockExpect(UART_USB);
+	Midi_Init(modo);
+*/
+	TEST_IGNORE_MESSAGE("Init USB no testeado");
+}
+void test_Inicializar_Midi_Uart_Usb (void){
+	midiPortMode_t modo;
+
+	modo = MODE_UART_USB;
+	Midi_UartConfig_CMockExpect(UART_USB);
+	Midi_Init(modo);
+}
+
+void test_Enviar_Evento (void){
+
+	midi_Packet paquete;
+	paquete.channel = 0x05;
+	paquete.type = 0x80;
+	paquete.msg0 = 0x85;
+	paquete.msg1 = 64;
+	paquete.msg2 = 64;
+	Midi_Uart_Send_Event_CMockExpect(&paquete);
+	Midi_Send_Event (UART_PORT, &paquete);
+
+}
+/** \brief tear Down function
+ **
+ ** This function is called after each test case is executed
+ **
+ **/
+void tearDown(void) {
+}
+
+/** @} doxygen end group definition */
 /** @} doxygen end group definition */
 /** @} doxygen end group definition */
 /*==================[end of file]============================================*/
+

@@ -34,7 +34,7 @@
 # unit test
 # unit tests include files
 midi_TST_INC_PATH = $(midi_PATH)$(DS)test$(DS)utest$(DS)inc
-
+midi_TST_SRC_PATH = $(midi_PATH)$(DS)test$(DS)utest$(DS)src
 # unit tests dependencies
 midi_TST_MOD      =
 # extra mocks

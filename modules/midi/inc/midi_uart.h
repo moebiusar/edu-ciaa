@@ -45,9 +45,12 @@
  *
  */
 
-/** \brief This file implements the Midi main functionality
+#ifndef MIDI_UART_H
+#define MIDI_UART_H
+/** \brief Midi Header File
  **
- ** This file implements the main functionality of the Midi
+ ** This files shall be included by modules using the interfaces provided by
+ ** the Midi
  **
  **/
 
@@ -58,84 +61,64 @@
 
 /*==================[inclusions]=============================================*/
 #include "midi.h"
+/*==================[cplusplus]==============================================*/
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-/*==================[macros and definitions]=================================*/
+/*==================[macros]=================================================*/
 
-/*==================[internal data declaration]==============================*/
 
-/*==================[internal functions declaration]=========================*/
+/*==================[typedef]================================================*/
 
-/*==================[internal data definition]===============================*/
+typedef enum{
+   UART_USB, UART_232, UART_485, USB
+} MidiUart_t;
 
-/*==================[external data definition]===============================*/
+/*==================[external data declaration]==============================*/
+//extern midi_Packet;
+/*==================[external functions declaration]=========================*/
+void Midi_UartConfig( MidiUart_t uart );
+void Midi_Uart_Send_Event(midi_Packet *packetPtr);
+/*
+ * @brief   Data consumer in the Rx side of the communication
+ * @param    none
+ * @return   the oldest byte in the reception buffer. 0 if there is
+ *   no new data.
+ * @note   if there is no new data, the return will be zero
+ */
+uint8_t uartCanRead (void);
 
-/*==================[internal functions definition]==========================*/
+/*
+ * @brief   indicates if there data available in the reception buffer
+ * @param   none
+ * @return   1 if there is a byte in the reception buffer, 0 if not
+ * @note   this function should be used before uartRead() to avoid receiving
+ *   invalid bytes
+ */
+uint8_t uartRead( void );
 
-/*==================[external functions definition]==========================*/
-//int32_t Midi_Init_Uart(MidiUart_t uart){}
+/*
+ * @brief   Data producer in the Tx side of the communication
+ * @param   byte:   data to be writen in the transmission buffer
+ * @return   nothing
+ */
+void uartWrite( uint8_t byte);
 
-uint8_t Midi_Es_Status(uint8_t byte){
-
-	return (byte & 128) >> 7;
+/*
+ * @brief   write a string to the transmission buffer
+ * @param   strPtr:   pointer to the string
+ * @param   strLengt:   length of the string (sizeof)
+ * @return   nothing
+ * @note   Max string length = SRB_SIZE
+ */
+void uartWriteString( uint8_t *strPtr,uint8_t strLength);
+/*==================[cplusplus]==============================================*/
+#ifdef __cplusplus
 }
-uint8_t Midi_Es_Dato(uint8_t byte){
-
-	return !Midi_Es_Status(byte);
-}
-
-uint8_t Midi_Es_Mensaje_De_Canal (uint8_t byte){
-
-	uint8_t ret;
-	if ((0x80 <= byte) && (0xF0 > byte)){
-		ret = 1;
-	}
-	else
-	{
-		ret = 0;
-	}
-	return ret;
-}
-
-uint8_t Midi_Es_Mensaje_De_Sistema (uint8_t byte){
-
-	uint8_t ret;
-	if ((0xF0 <= byte) && (0xFF >= byte)){
-		ret = 1;
-	}
-	else
-	{
-		ret = 0;
-	}
-	return ret;
-}
-
-void Midi_Init ( midiPortMode_t mode ){
-	switch ( mode ){
-	case MODE_USB:
-		break;
-	case MODE_UART_USB:
-		Midi_UartConfig( UART_USB );
-		//Midi_UsbConfig();
-		break;
-	default:
-	case MODE_UART:
-		Midi_UartConfig( UART_USB );
-		break;
-	}
-}
-
-void Midi_Send_Event (midiPort_t port, midi_Packet *packetPtr)
-{
-	switch(port){
-	case USB_PORT:
-		break;
-	case UART_PORT:
-	default:
-		Midi_Uart_Send_Event(packetPtr);
-		break;
-	}
-
-}
+#endif
 /** @} doxygen end group definition */
 /** @} doxygen end group definition */
 /*==================[end of file]============================================*/
+#endif /* #ifndef MIDI_UART_H */
+
