@@ -140,13 +140,13 @@ void test_Inicializar_Midi_Uart_Usb (void){
 void test_Enviar_Evento (void){
 
 	midi_Packet paquete;
-	uint8_t string =  "U@U";
+	uint8_t string =  "U@@";
 	paquete.channel = 0x05;
 	paquete.type = 0x80;
 	paquete.msg0 = 0x85;
 	paquete.msg1 = 64;
 	paquete.msg2 = 64;
-	Midi_Uart_Send_Event_CMockExpect(NULL);
+	Midi_Uart_Send_Event_CMockExpect(&paquete);
 	//Midi_Uart_Send_Event_CMockIgnore();
 	///uartWriteString_CMockExpect(string,3);
 	Midi_Send_Event (UART_PORT, &paquete);
