@@ -115,8 +115,8 @@ void Midi_Packet_to_String (midi_Packet* packetPtr, uint8_t* string){
 }
 
 void Midi_Uart_Send_Event(midi_Packet *packetPtr){
-	Midi_Packet_to_String(packetPtr, midiString);
-	uartWriteString( midiString, 3 );
+	Midi_Packet_to_String(packetPtr, &midiString);
+	uartWriteString( &midiString, 3 );
 }
 
 /*

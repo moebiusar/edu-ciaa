@@ -130,23 +130,27 @@ void test_Inicializar_Midi_Solo_Usb (void){
 	TEST_IGNORE_MESSAGE("Init USB no testeado");
 }
 void test_Inicializar_Midi_Uart_Usb (void){
-	midiPortMode_t modo;
+	/*midiPortMode_t modo;
 
 	modo = MODE_UART_USB;
 	Midi_UartConfig_CMockExpect(UART_USB);
 	Midi_Init(modo);
+	*/
+	TEST_IGNORE_MESSAGE("Init USB no testeado");
 }
 
 void test_Enviar_Evento (void){
 
 	midi_Packet paquete;
+	midi_Packet* paquetePtr;
 	uint8_t string =  "U@@";
 	paquete.channel = 0x05;
 	paquete.type = 0x80;
 	paquete.msg0 = 0x85;
 	paquete.msg1 = 64;
 	paquete.msg2 = 64;
-	Midi_Uart_Send_Event_CMockExpect(&paquete);
+	paquetePtr = &paquete;
+	Midi_Uart_Send_Event_CMockExpect(paquetePtr);
 	//Midi_Uart_Send_Event_CMockIgnore();
 	///uartWriteString_CMockExpect(string,3);
 	Midi_Send_Event (UART_PORT, &paquete);
