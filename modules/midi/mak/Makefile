@@ -47,14 +47,14 @@
 #
 ###############################################################################
 # library
-LIBS 				     += midi
+LIBS 				  += midi
 # version
-midi_VERSION     = 0.1.0
+midi_VERSION		= 0.1.0
 # library path
-midi_PATH 		   = $(ROOT_DIR)$(DS)modules$(DS)midi
+midi_PATH		= $(ROOT_DIR)$(DS)modules$(DS)midi
 # library source path
-midi_SRC_PATH 	= $(midi_PATH)$(DS)src
+midi_SRC_PATH		= $(midi_PATH)$(DS)src
 # library include path
-midi_INC_PATH 	= $(midi_PATH)$(DS)inc
+midi_INC_PATH		= $(midi_PATH)$(DS)inc
 # library source files
-midi_SRC_FILES 	= $(wildcard $(midi_SRC_PATH)$(DS)*.c)
+midi_SRC_FILES		= $(wildcard $(midi_SRC_PATH)$(DS)*.c)

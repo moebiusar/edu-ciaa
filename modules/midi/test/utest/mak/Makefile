@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# Copyright 2015, Mariano Cerdeiro
+# Copyright 2015, Carlos Ignacio Mancón
 #
 # This file is part of CIAA Firmware.
 #

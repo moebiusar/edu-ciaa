@@ -98,6 +98,8 @@ void test_Inicializar_Midi_Uart_Usb (void){
 void test_Enviar_Evento (void){
 
 	midi_Packet paquete;
+	uint8_t string[] =  "U@@";
+
 	paquete.channel = 0x05;
 	paquete.type = 0x80;
 	paquete.msg0 = 0x85;

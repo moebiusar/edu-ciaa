@@ -91,6 +91,8 @@ uint8_t Midi_Es_Status(uint8_t);
 
 uint8_t Midi_Es_Mensaje_De_Canal(uint8_t);
 
+void Midi_Send_Event (midiPort_t port, midi_Packet *packetPtr);
+
 /*==================[cplusplus]==============================================*/
 #ifdef __cplusplus
 }
