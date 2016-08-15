@@ -76,7 +76,7 @@ static uint8_t midiString[3];
 /* Transmit and receive ring buffers */
 static RINGBUFF_T txring, rxring;
 /*==================[external functions definition]==========================*/
-void Midi_UartConfig( midiPort_t uart ){
+void Midi_UartConfig( MidiUart_t uart ){
    switch(uart){
    case UART_USB:
       Chip_UART_Init(UART_USB_LPC);

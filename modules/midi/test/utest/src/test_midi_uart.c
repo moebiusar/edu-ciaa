@@ -47,7 +47,6 @@
 #include "ciaaPOSIX_stdint.h"
 #include "midi.h"
 #include "midi_uart.h"
-//#include "../../../../../externals/drivers/cortexM4/lpc43xx/inc/ring_buffer.h"
 
 /*==================[macros and definitions]=================================*/
 
@@ -70,43 +69,16 @@
 void setUp(void) {
 }
 
-void test_Inicializar_Midi_Solo_Uart (void){
-	midiPortMode_t modo;
-
-	modo = MODE_UART;
-	Midi_UartConfig_CMockExpect(UART_USB);
-	Midi_Init(modo);
-
-}
-void test_Inicializar_Midi_Solo_Usb (void){
-	/*midiPortMode_t modo;
-
-	modo = MODE_USB;
-	Midi_UartConfig_CMockExpect(UART_USB);
-	Midi_Init(modo);
-*/
-	TEST_IGNORE_MESSAGE("Init USB no testeado");
-}
-void test_Inicializar_Midi_Uart_Usb (void){
-	midiPortMode_t modo;
-
-	modo = MODE_UART_USB;
-	Midi_UartConfig_CMockExpect(UART_USB);
-	Midi_Init(modo);
-}
-
 void test_Enviar_Evento (void){
 
 	midi_Packet paquete;
-	uint8_t string[] =  "U@@";
+	uint8_t string[3] =  "U@@";
 
 	paquete.channel = 0x05;
 	paquete.type = 0x80;
 	paquete.msg0 = 0x85;
 	paquete.msg1 = 64;
 	paquete.msg2 = 64;
-	Midi_Uart_Send_Event_CMockExpect(&paquete);
-	Midi_Send_Event (UART_PORT, &paquete);
 
 }
 /** \brief tear Down function
