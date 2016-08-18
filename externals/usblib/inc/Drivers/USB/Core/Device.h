@@ -134,7 +134,7 @@
 			                                    ) ATTR_WARN_UNUSED_RESULT ATTR_NON_NULL_PTR_ARG(4);
 
 			#if defined(__LPC18XX__) || defined(__LPC43XX__)
-				#include "DCD/LPC18XX/Device_LPC18xx.h"
+				#include "DCD/LPC43XX/Device_LPC18xx.h"
 			#elif defined(__LPC175X_6X__) || defined(__LPC177X_8X__) || defined(__LPC407X_8X__)
 				#include "DCD/LPC17XX/Device_LPC17xx.h"
 			#elif defined(__LPC11U1X__) || defined(__LPC11U2X_3X__) || defined(__LPC1347__)

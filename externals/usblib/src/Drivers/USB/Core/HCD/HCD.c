@@ -30,7 +30,7 @@
  */
 
 #define  __INCLUDE_FROM_USB_DRIVER
-#include "../USBMode.h"
+#include "../inc/Drivers/USB/Core/USBMode.h"
 
 #ifdef USB_CAN_BE_HOST
 
@@ -38,7 +38,7 @@
 	#error "Either __LPC_OHCI__ or __LPC_EHCI__ must be defined"
 #endif
 
-#include "../USBTask.h"
+#include "../inc/Drivers/USB/Core/USBTask.h"
 
 
 #ifdef LPCUSBlib_DEBUG

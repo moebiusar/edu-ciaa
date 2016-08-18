@@ -33,13 +33,13 @@
 /*        I N C L U D E S                                                */
 /*=======================================================================*/
 #define  __INCLUDE_FROM_USB_DRIVER
-#include "../../USBMode.h"
+#include "../inc/Drivers/USB/Core/USBMode.h"
 
 #if (defined(USB_CAN_BE_HOST) && defined(__LPC_OHCI__))
 
 #define __LPC_OHCI_C__
-#include "../../../../../Common/Common.h"
-#include "../../USBTask.h"
+#include "../inc/Common/Common.h"
+#include "../inc/Drivers/USB/Core/USBTask.h"
 #include "../HCD.h"
 #include "OHCI.h"
 

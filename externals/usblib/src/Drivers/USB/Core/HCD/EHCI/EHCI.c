@@ -33,15 +33,15 @@
 /*        I N C L U D E S                                                */
 /*=======================================================================*/
 #define  __INCLUDE_FROM_USB_DRIVER
-#include "../../USBMode.h"
+#include "../inc/Drivers/USB/Core/USBMode.h"
 
 #if (defined(USB_CAN_BE_HOST) && defined(__LPC_EHCI__))
 
 #define __LPC_EHCI_C__
-#include "../../../../../Common/Common.h"
-#include "../../USBTask.h"
-#include "../HCD.h"
-#include "EHCI.h"
+#include "../Common/Common.h"
+#include "../inc/Drivers/USB/Core/USBTask.h"
+#include "../inc/Drivers/USB/Core/HCD/HCD.h"
+#include "../inc/Drivers/USB/Core/HCD/EHCI/EHCI.h"
 
 // === TODO: Unify USBRAM Section ===
 PRAGMA_ALIGN_32

@@ -30,11 +30,11 @@
  */
 
 #define  __INCLUDE_FROM_USB_DRIVER
-#include "../../USBMode.h"
+#include "../inc/Drivers/USB/Core/USBMode.h"
 
 #if defined(USB_CAN_BE_DEVICE)
-#include "../../Device.h"
-#include "../../Endpoint.h"
+#include "../inc/Drivers/USB/Core/Device.h"
+#include "../inc/Drivers/USB/Core/Endpoint.h"
 
 #if defined(USB_DEVICE_ROM_DRIVER)
 USBD_HANDLE_T UsbHandle;
