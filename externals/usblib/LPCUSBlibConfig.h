@@ -63,7 +63,7 @@
 #define USB_CAN_BE_DEVICE
 
 #define __LPC43XX__
-#define __GNUC__ 4
+//#define __GNUC__ 4
 
 #ifndef CPU
 #error CPU shall be defined

@@ -53,16 +53,12 @@ ext_usblib_SRC_FILES += $(wildcard $(ext_usblib_SRC_PATH)$(DS)*.c)	\
    	$(wildcard $(ext_usblib_SRC_PATH)$(DS)Drivers$(DS)USB$(DS)Class$(DS)Device$(DS)*.c) \
    	$(wildcard $(ext_usblib_SRC_PATH)$(DS)Drivers$(DS)USB$(DS)Class$(DS)Host$(DS)*.c) \
    	$(wildcard $(ext_usblib_SRC_PATH)$(DS)Drivers$(DS)USB$(DS)Core$(DS)*.c) \
-   	$(wildcard $(ext_usblib_SRC_PATH)$(DS)Drivers$(DS)USB$(DS)Core$(DS)LPC$(DS)*.c) \
-   	$(wildcard $(ext_usblib_SRC_PATH)$(DS)Drivers$(DS)USB$(DS)Core$(DS)LPC$(DS)DCD$(DS)*.c) \
-   	$(wildcard $(ext_usblib_SRC_PATH)$(DS)Drivers$(DS)USB$(DS)Core$(DS)LPC$(DS)DCD$(DS)LPC11UXX$(DS)*.c) \
-   	$(wildcard $(ext_usblib_SRC_PATH)$(DS)Drivers$(DS)USB$(DS)Core$(DS)LPC$(DS)DCD$(DS)LPC17XX$(DS)*.c) \
-   	$(wildcard $(ext_usblib_SRC_PATH)$(DS)Drivers$(DS)USB$(DS)Core$(DS)LPC$(DS)DCD$(DS)LPC18XX$(DS)*.c) \
-   	$(wildcard $(ext_usblib_SRC_PATH)$(DS)Drivers$(DS)USB$(DS)Core$(DS)LPC$(DS)DCD$(DS)USBRom$(DS)*.c) \
-   	$(wildcard $(ext_usblib_SRC_PATH)$(DS)Drivers$(DS)USB$(DS)Core$(DS)LPC$(DS)HAL$(DS)*.c) \
-   	$(wildcard $(ext_usblib_SRC_PATH)$(DS)Drivers$(DS)USB$(DS)Core$(DS)LPC$(DS)HAL$(DS)LPC11UXX$(DS)*.c) \
-   	$(wildcard $(ext_usblib_SRC_PATH)$(DS)Drivers$(DS)USB$(DS)Core$(DS)LPC$(DS)HAL$(DS)LPC17XX$(DS)*.c) \
-   	$(wildcard $(ext_usblib_SRC_PATH)$(DS)Drivers$(DS)USB$(DS)Core$(DS)LPC$(DS)HAL$(DS)LPC18XX$(DS)*.c) \
-   	$(wildcard $(ext_usblib_SRC_PATH)$(DS)Drivers$(DS)USB$(DS)Core$(DS)LPC$(DS)HCD$(DS)*.c) \
-   	$(wildcard $(ext_usblib_SRC_PATH)$(DS)Drivers$(DS)USB$(DS)Core$(DS)LPC$(DS)HCD$(DS)EHCI$(DS)*.c) \
-   	$(wildcard $(ext_usblib_SRC_PATH)$(DS)Drivers$(DS)USB$(DS)Core$(DS)LPC$(DS)HCD$(DS)OHCI$(DS)*.c)
+   	$(wildcard $(ext_usblib_SRC_PATH)$(DS)Drivers$(DS)USB$(DS)Core$(DS)*.c) \
+   	$(wildcard $(ext_usblib_SRC_PATH)$(DS)Drivers$(DS)USB$(DS)Core$(DS)DCD$(DS)*.c) \
+   	$(wildcard $(ext_usblib_SRC_PATH)$(DS)Drivers$(DS)USB$(DS)Core$(DS)DCD$(DS)LPC43XX$(DS)*.c) \
+   	$(wildcard $(ext_usblib_SRC_PATH)$(DS)Drivers$(DS)USB$(DS)Core$(DS)DCD$(DS)USBRom$(DS)*.c) \
+   	$(wildcard $(ext_usblib_SRC_PATH)$(DS)Drivers$(DS)USB$(DS)Core$(DS)HAL$(DS)*.c) \
+   	$(wildcard $(ext_usblib_SRC_PATH)$(DS)Drivers$(DS)USB$(DS)Core$(DS)HAL$(DS)LPC43XX$(DS)*.c) \
+   	$(wildcard $(ext_usblib_SRC_PATH)$(DS)Drivers$(DS)USB$(DS)Core$(DS)HCD$(DS)*.c) \
+   	$(wildcard $(ext_usblib_SRC_PATH)$(DS)Drivers$(DS)USB$(DS)Core$(DS)HCD$(DS)EHCI$(DS)*.c) \
+   	$(wildcard $(ext_usblib_SRC_PATH)$(DS)Drivers$(DS)USB$(DS)Core$(DS)HCD$(DS)OHCI$(DS)*.c)
