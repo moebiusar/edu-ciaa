@@ -30,6 +30,7 @@
  * this code.
  */
 
+#include "board.h"
 #include "GenericHID.h"
 #define __LPC43XX__
 /*****************************************************************************
@@ -69,6 +70,7 @@ static USB_ClassInfo_HID_Device_t Generic_HID_Interface = {
    functionality */
 static void SetupHardware(void)
 {
+	board_init();
 	USB_Init(Generic_HID_Interface.Config.PortNumber, USB_MODE_Device);
 #if defined(USB_DEVICE_ROM_DRIVER)
 	UsbdHid_Init();
@@ -113,11 +115,17 @@ int main(void)
 
 /* Event handler for the library USB Connection event */
 void EVENT_USB_Device_Connect(void)
-{}
+{
+	Chip_GPIO_ClearValue(LPC_GPIO_PORT, LEDR_GPIO, (1<<LEDR_PIN));
+	Chip_GPIO_SetPinState( LPC_GPIO_PORT, LEDG_GPIO, LEDG_PIN, 1);
+}
 
 /* Event handler for the library USB Disconnection event */
 void EVENT_USB_Device_Disconnect(void)
-{}
+{
+	Chip_GPIO_ClearValue(LPC_GPIO_PORT, LEDG_GPIO, (1<<LEDG_PIN));
+	Chip_GPIO_SetPinState(LPC_GPIO_PORT, LEDR_GPIO, LEDR_PIN, 1);
+}
 
 /* Event handler for the library USB Configuration Changed event */
 void EVENT_USB_Device_ConfigurationChanged(void)
@@ -138,7 +146,17 @@ void EVENT_USB_Device_ControlRequest(void)
 /* Event handler for the USB device Start Of Frame event */
 void EVENT_USB_Device_StartOfFrame(void)
 {
+	static uint8_t count, value;
+	count = 0;
+	value = 0;
+
 	HID_Device_MillisecondElapsed(&Generic_HID_Interface);
+
+	if (100 == ++count)
+	{
+	Chip_GPIO_SetPinState( LPC_GPIO_PORT, LED2_GPIO, LED2_PIN, ~value);
+	count = 0;
+	}
 }
 
 /* HID class driver callback function for the creation of HID reports to the host */
