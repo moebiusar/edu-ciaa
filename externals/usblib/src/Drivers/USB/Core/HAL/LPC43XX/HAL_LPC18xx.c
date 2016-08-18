@@ -82,7 +82,7 @@ void HAL_USBInit(uint8_t corenum)
 			Chip_Clock_EnableOpts(CLK_MX_USB0, true, true, 1);
 
 			/* Turn on the phy */
-			Chip_CREG_EnableUSB0Phy(true);
+			Chip_CREG_EnableUSB0Phy();
 		}
 		else {
 			/* For core 1, enable USB1 base clock */
@@ -90,7 +90,7 @@ void HAL_USBInit(uint8_t corenum)
 			Chip_Clock_EnableOpts(CLK_MX_USB1, true, true, 1);
 
 			/* Turn on the phy */
-			Chip_CREG_EnableUSB0Phy(true);
+			Chip_CREG_EnableUSB0Phy();
 #if defined(USB_CAN_BE_HOST)
 			/* enable USB1_DP and USB1_DN on chip FS phy */
 			if (corenum && USB_CurrentMode[corenum] == USB_MODE_Host)LPC_SCU->SFSUSB = 0x16;
@@ -152,7 +152,7 @@ void HAL_USBDeInit(uint8_t corenum, uint8_t mode)
 	/* Disable USB PHY if both USB cores are disabled */
 	if (coreEnabled[1 - corenum]) {
 		/* Turn off the phy (prior to PLL disabled) */
-		Chip_CREG_EnableUSB0Phy(false);
+		Chip_CREG_DisableUSB0Phy();
 	}
 
 	/* Power down USB clocking */
