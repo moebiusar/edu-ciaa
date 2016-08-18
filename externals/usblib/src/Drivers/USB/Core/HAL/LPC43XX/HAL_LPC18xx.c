@@ -31,11 +31,11 @@
 
 #if defined(__LPC18XX__) || defined(__LPC43XX__)
 
-#include "../HAL.h"
-#include "../../USBTask.h"
+#include "../inc/Drivers/USB/Core/HAL/HAL.h"
+#include "../inc/Drivers/USB/Core/USBTask.h"
 
 #if defined(USB_CAN_BE_DEVICE)
-#include "../../Device.h"
+#include "../inc/Drivers/USB/Core/Device.h"
 
 void HAL_USBConnect(uint8_t corenum, uint32_t con)
 {

@@ -30,10 +30,10 @@
  */
 
 #define  __INCLUDE_FROM_USB_DRIVER
-#include "../../USBMode.h"
+#include "../inc/Drivers/USB/Core/USBMode.h"
 
 #if (defined(__LPC18XX__) || defined(__LPC43XX__)) && defined(USB_CAN_BE_DEVICE)
-#include "../../Endpoint.h"
+#include "../inc/Drivers/USB/Core/Endpoint.h"
 #include <string.h>
 
 #if defined(USB_DEVICE_ROM_DRIVER)
